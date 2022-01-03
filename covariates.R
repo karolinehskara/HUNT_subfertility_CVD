@@ -142,17 +142,17 @@ pop_dat[pop_dat$survey == 'h4', 43] <- q_hunt[pop_dat$PID110334[pop_dat$survey =
 pop_dat[pop_dat$survey == 'h3', 43] <- ifelse(!is.na(q_hunt[pop_dat$PID110334[pop_dat$survey == 'h3'], 'Educ_NT4BLQ1']), q_hunt[pop_dat$PID110334[pop_dat$survey == 'h3'], 'Educ_NT4BLQ1'], q_hunt[pop_dat$PID110334[pop_dat$survey == 'h3'], 'Educ_NT2BLQ1'])
 colnames(pop_dat)[43] <- 'educ'
 # Recode education from Norwegian to English
-pop_dat$educ[pop_dat$educ %in% c('Grunnskole 7-10 år, framhaldsskole, folkehøgskole',
-                                 'Realskole, middelskole, yrkesskole 1-2 årig videregående skole',
+pop_dat$educ[pop_dat$educ %in% c('Grunnskole 7-10 Ã¥r, framhaldsskole, folkehÃ¸gskole',
+                                 'Realskole, middelskole, yrkesskole 1-2 Ã¥rig videregÃ¥ende skole',
                                  'Grunnskole',
                                  'Fagbrev eller svennebrev',
-                                 '1-2årig videregående skole')] <- 'secondary school'
-pop_dat$educ[pop_dat$educ %in% c('3 år i videregående skole',
-                                 'Artium, øk.gymnas, allmennfaglig retning i videregående skole')] <- 'upper secondary school'
-pop_dat$educ[pop_dat$educ %in% c('Høgskole/universitet, mindre enn 4 år',
-                                 'Høgskole/universitet, 4 år eller mer',
-                                 'Høyskole/universitet, mindre enn 4 år',
-                                 'Høyskole/universitet, 4 år eller mer')] <- 'higher education'
+                                 '1-2Ã¥rig videregÃ¥ende skole')] <- 'secondary school'
+pop_dat$educ[pop_dat$educ %in% c('3 Ã¥r i videregÃ¥ende skole',
+                                 'Artium, Ã¸k.gymnas, allmennfaglig retning i videregÃ¥ende skole')] <- 'upper secondary school'
+pop_dat$educ[pop_dat$educ %in% c('HÃ¸gskole/universitet, mindre enn 4 Ã¥r',
+                                 'HÃ¸gskole/universitet, 4 Ã¥r eller mer',
+                                 'HÃ¸yskole/universitet, mindre enn 4 Ã¥r',
+                                 'HÃ¸yskole/universitet, 4 Ã¥r eller mer')] <- 'higher education'
 
 # Occupation
 pop_dat[pop_dat$survey == 'h2', 44] <- q_hunt[pop_dat$PID110334[pop_dat$survey == 'h2'], 'WorEGPEd_NT2BLQ2']
@@ -163,18 +163,18 @@ colnames(pop_dat)[44] <- 'occup'
 pop_dat$educ[pop_dat$survey == 'h2' & is.na(pop_dat$educ) & pop_dat$occup %in% c('Selvstendig i akademisk erverv - EGP-klasse I',
                                                                                'Overordnet stilling i offentlig eller privat virksomhet - EGP-klasse I',
                                                                                'Flere yrker - EGP-klasse I',
-                                                                               'Fagfunksjonær - EGP-klasse II',
+                                                                               'FagfunksjonÃ¦r - EGP-klasse II',
                                                                                'Flere yrker - EGP-klasse II')] <- 'higher education'
-pop_dat$educ[pop_dat$survey == 'h2' & is.na(pop_dat$educ) & pop_dat$occup %in% c('Underordnet funksjonær - EGP-klasse III',
+pop_dat$educ[pop_dat$survey == 'h2' & is.na(pop_dat$educ) & pop_dat$occup %in% c('Underordnet funksjonÃ¦r - EGP-klasse III',
                                                                                'Flere yrker - EGP-klasse III',
-                                                                               'Annen selvstendig n�ringsvirksomhet - EGP-klasse IV a+IV b',
-                                                                               'G�rdbruker eller skogeier - EGP-klasse IV c',
+                                                                               'Annen selvstendig næringsvirksomhet - EGP-klasse IV a+IV b',
+                                                                               'Gårdbruker eller skogeier - EGP-klasse IV c',
                                                                                'Fisker - EGP-klasse IV c',
                                                                                'Flere yrker - EGP-klasse IV',
                                                                                'Fagarbeider, handverker, forM - EGP-klasse V+VI',
                                                                                'Flere yrker - EGP-klasse V+VI')] <- 'upper secondary school'
-pop_dat$educ[pop_dat$survey == 'h2' & is.na(pop_dat$educ) & pop_dat$occup %in% c('Spesialarbeider eller ufaglært arbeider - EGP-klasse VII a+VII b',
-                                                                               'Sjåf�r - EGP-klasse VII a+VII b',
+pop_dat$educ[pop_dat$survey == 'h2' & is.na(pop_dat$educ) & pop_dat$occup %in% c('Spesialarbeider eller ufaglÃ¦rt arbeider - EGP-klasse VII a+VII b',
+                                                                               'SjÃ¥fÃr - EGP-klasse VII a+VII b',
                                                                                'Flere yrker - EGP-klasse VII a+VII b',
                                                                                'Ikke i arbeid - ikke klassifisert i EGP sosial klasseskjema')] <- 'secondary school'
 pop_dat$educ[(pop_dat$survey == 'h3' | pop_dat$survey == 'h4') & is.na(pop_dat$educ) & substring(pop_dat$occup,1,1) %in% c('1','2','3')] <- 'higher education'
@@ -211,8 +211,8 @@ pop_dat[pop_dat$survey == 'h3', 49] <- as.character(newdat[pop_dat$PID110334[pop
 pop_dat[pop_dat$survey == 'h4', 49] <- q_hunt[pop_dat$PID110334[pop_dat$survey == 'h4'], 'BPMedCu_NT4BLQ1']
 colnames(pop_dat)[49] <- 'bp_med'
 # Recode blood pressure medication from Norwegian to English
-pop_dat$bp_med[!is.na(pop_dat$bp_med) & pop_dat$bp_med %in% c('Nå','Ja')] <- 'yes'
-pop_dat$bp_med[!is.na(pop_dat$bp_med) & pop_dat$bp_med == 'Før, men ikke nå'] <- 'no'
+pop_dat$bp_med[!is.na(pop_dat$bp_med) & pop_dat$bp_med %in% c('NÃ¥','Ja')] <- 'yes'
+pop_dat$bp_med[!is.na(pop_dat$bp_med) & pop_dat$bp_med == 'FÃ¸r, men ikke nÃ¥'] <- 'no'
 pop_dat$bp_med[!is.na(pop_dat$bp_med) & pop_dat$bp_med %in% c('Nei', 'Aldri')] <- 'no'
 # Add 10 mmHg to diastolic and systolic blood pressure if participants use blood pressure medication
 pop_dat$bp_dias <- as.numeric(pop_dat$bp_dias)
