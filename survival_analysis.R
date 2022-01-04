@@ -13,6 +13,8 @@ library(survival)
 library(survminer)
 
 # Load required libraries #####
+
+# Recode variables
 pop_dat$PID110334 <- as.character(pop_dat$PID110334)
 pop_dat$sex <- as.factor(pop_dat$sex)
 pop_dat$birthyear <- as.numeric(pop_dat$birthyear)
