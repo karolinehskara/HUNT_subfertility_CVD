@@ -11,11 +11,8 @@ library(patchwork)
 library(ranger)
 library(survival)
 library(survminer)
-# Load data #####
-setwd("N:/data/durable/projects/KASK_Infertility_CVD/Data")
 
-pop_dat <- read.table(file = 'pop_dat_cov_211210.txt', header = TRUE)
-
+# Load required libraries #####
 pop_dat$PID110334 <- as.character(pop_dat$PID110334)
 pop_dat$sex <- as.factor(pop_dat$sex)
 pop_dat$birthyear <- as.numeric(pop_dat$birthyear)
