@@ -7,10 +7,8 @@ library(foreign)
 ## Load data frames #####
 Sys.setlocale("LC_TIME", "English")
 ## HUNT questionnaires
-# Set working directory
-setwd("N:/data/durable/projects/KASK_Infertility_CVD/Data")
-# Read HUNT questionnaires file
-q_hunt <- read.csv("Adult_HUNT.csv", na.strings = c(""), colClasses = "character")
+# Load required libraries
+
 # Recode IDs (PID_110334) to start with "id_" followed by the unique ID
 q_hunt$PID_110334 <- paste("id",q_hunt$PID_110334,sep="_")
 # Recode names of rows to the unique IDs
@@ -24,8 +22,8 @@ q_hunt$PartDat_NT4BLM <- as.Date(q_hunt$PartDat_NT4BLM, format = "%d %b %y")
 q_hunt$PartDat_NT4BLQ1 <- as.Date(q_hunt$PartDat_NT4BLQ1, format = "%d %b %y")
 
 ## Medical Birth Registry of Norway
-# Read file
-mbrn <- read.table('partners_KASK_210428.txt', sep = ",", header = TRUE, na.strings = c("","             ", NA), colClass = "character")
+# Load required libraries
+
 # Recode IDs (PID_110334_BARN, PID110334_MOR, PID110334_FAR) to start with "id_" followed by the unique ID
 # BARN = child, MOR = mother, FAR = father
 mbrn$PID110334_BARN[!is.na(mbrn$PID110334_BARN)] <- paste("id",mbrn$PID110334_BARN[!is.na(mbrn$PID110334_BARN)],sep="_")
@@ -415,8 +413,8 @@ pop_dat[!is.na(pop_dat$angina) & pop_dat$angina == 'Ja', 'angina_q'] <- TRUE
 pop_dat[!is.na(pop_dat$angina) & pop_dat$angina == 'Nei', 'angina_q'] <- FALSE
 
 ## Add history of disease from hospital records
-# Read file
-cvd_diag_hunt <- read.csv("HNT_Data_HUNT_Adults.csv",na.strings = c(" ", NA), colClasses = 'character')
+# Load required libraries
+
 # Recode IDs (PID_110334) to start with "id_" followed by the unique ID
 cvd_diag_hunt$PID_110334 <- paste("id",cvd_diag_hunt$PID_110334,sep="_")
 # Recode names of columns
@@ -485,7 +483,8 @@ colnames(pop_dat)[33] <- 'fd_angina'
 pop_dat$fd_angina <- as.Date(pop_dat$fd_angina)
 
 ## Add end of observation date
-death_hunt <- read.table('HNT_Data_HUNT_Adults_updated052021.txt', sep = ",", header = T, colClasses = 'character')
+# Load required libraries
+
 # Recode IDs (PID_110334) to start with "id_" followed by the unique ID
 death_hunt$PID.110334 <- paste("id",death_hunt$PID.110334,sep="_")
 # Recode names of rows to the unique IDs
