@@ -1,25 +1,24 @@
 # HUNT_subfertility_CVD
 
-# Manuscript: "Risk of cardiovascular disease in women and men with subfertility: findings from the Trøndelag Health Study"
+# Manuscript: "Risk of cardiovascular disease in women and men with subfertility: the Trøndelag Health Study"
 ## Authors
-- Álvaro Hernáez
-- Tormod Rogne
 - Karoline H. Skåra
-- Siri E. Håberg
-- Christian M. Page
+- Bjørn Olav Åsvold
+- Álvaro Hernáez
 - Abigail Fraser
-- Stephen Burgess
+- Janet W. Rich-Edwards
+- Leslie V. Farland
+- Øyvind Næss
 - Deborah A. Lawlor
-- Maria Christine Magnus
+- Ben Brumpton
+- Maria C. Magnus
 
 
 ## Syntax available
 Available files: 
-- making_data_grs.R: calculation of GRSs
-- making_data_database_selection.R: creation of study database + selection of participants (flow chart data)
-- analysis_main.R: one-sample MR and quality checks
-- analysis_gwas_mr.R: generation of temporary GWAS on subfertility in MoBa + two-sample MR
+- study_population.R: identifying study population
+- covariates.R: including relevant covariates for study population
+- survival_analysis.R: survival analysis and creating all tables and figures
 
 
 ## Citation
-Hernaez A, Rogne T, Skåra K.H., Page C.M., Fraser A, Burgess S, Lawlor D.A., Magnus M.C. (2021). Body mass index and subfertility: multivariable regression and Mendelian randomization analyses in the Norwegian Mother, Father and Child Cohort Study. 
