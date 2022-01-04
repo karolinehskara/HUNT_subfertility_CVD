@@ -6,12 +6,8 @@ library(dplyr)
 library(foreign)
 ## Load data frames #####
 Sys.setlocale('LC_TIME', 'English')
-# Read study population file
-setwd('N:/data/durable/projects/KASK_Infertility_CVD/Data')
-pop_dat <- read.table(file = 'pop_dat_211209.txt', header = TRUE)
+# Read required libraries
 
-# Read HUNT questionnaires file
-q_hunt <- read.csv('Adult_HUNT.csv', na.strings = c(''), colClasses = 'character')
 # Format IDs (PID_110334) to start with 'id_' followed by the unique ID
 q_hunt$PID_110334 <- paste('id',q_hunt$PID_110334,sep='_')
 # Rename rownames to the unique IDs
@@ -25,18 +21,16 @@ q_hunt$PartDat_NT4BLM <- as.Date(q_hunt$PartDat_NT4BLM, format = '%d %b %y')
 q_hunt$PartDat_NT4BLQ1 <- as.Date(q_hunt$PartDat_NT4BLQ1, format = '%d %b %y')
 
 ## Add blood pressure variable received after access to HUNT questionnaires
-# Read file
-setwd('N:/data/durable/RAW/HUNT')
-newdat <- read.spss('2021-04-15_110334_Tillegg.sav', to.data.frame = TRUE)
+# Read required libraries
+
 # Format IDs (PID.110334) to start with 'id_' followed by the unique ID
 newdat$PID.110334 <- paste('id',newdat$PID.110334,sep='_')
 # Rename rownames to the unique IDs
 rownames(newdat) <- newdat$PID.110334
-setwd('N:/data/durable/projects/KASK_Infertility_CVD/Data')
 
 ## Medical Birth Registry of Norway
-# Read file
-mbrn <- read.table('partners_KASK_210428.txt', sep = ',', header = TRUE, na.strings = c('','             ', NA), colClass = 'character')
+# Read required libraries
+
 # Recode IDs (PID_110334_BARN, PID110334_MOR, PID110334_FAR) to start with 'id_' followed by the unique ID
 # BARN = child, MOR = mother, FAR = father
 mbrn$PID110334_BARN[!is.na(mbrn$PID110334_BARN)] <- paste('id',mbrn$PID110334_BARN[!is.na(mbrn$PID110334_BARN)],sep='_')
@@ -293,6 +287,7 @@ pop_dat$couple[pop_dat$sex == 'M'] <- seq(length(pop_dat$PID110334[pop_dat$sex =
 tmp <- lapply(split(pop_dat[pop_dat$sex == 'M',], pop_dat$PID110334[pop_dat$sex == 'M']), function(x) ifelse(x$partner %in% pop_dat$PID110334, pop_dat$couple[which(pop_dat$PID110334 == x$partner)], x$couple))
 pop_dat[names(tmp), 'couple'] <- unlist(tmp)
 
+# Remove unnecessariy columns
 pop_dat <- pop_dat[,-c(4:18,24:29,37,40:41,44)]
 
 # Save file
